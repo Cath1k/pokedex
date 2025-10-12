@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Kanto | DevChallenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <header class="header">
+        <div class="logo">Pokédex Kanto</div>
+        
+        <nav class="nav-links" id="main-nav">
+            <a href="#gen1" class="nav-active">Gen 1 (Kanto)</a>
+            <a href="#">Gen 2 (Johto)</a>
+            <a href="#">Gen 3 (Hoenn)</a>
+            </nav>
+        
+        <div class="header-actions">
+            <button id="theme-toggle" class="toggle-button" aria-label="Cambiar modo claro/oscuro">
+                ☀️ / 🌙
+            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                &#9776;
+            </button>
+        </div>
+    </header>
+
+    <main class="pokedex-main">
+        <h1 class="visually-hidden">Pokédex de Primera Generación</h1>
+        <section class="pokemon-grid" id="pokemon-grid"></section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
