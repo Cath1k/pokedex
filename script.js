@@ -186,10 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderPokedex();
 
-
+    // --- LÓGICA DE TEMAS ---
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
+    // Cargar tema guardado
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
         body.classList.remove('light-mode');
@@ -199,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.add('light-mode');
     }
 
+    // Toggle de tema
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
         body.classList.toggle('light-mode');
@@ -210,24 +212,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- LÓGICA DE MENÚ HAMBURGUESA ---
     const menuToggle = document.getElementById('menu-toggle');
-    const mainNav = document.getElementById('main-nav');
+    const navLinks = document.querySelector('.nav-links'); // Selecciona el contenedor de enlaces
+    const mainNav = document.getElementById('main-nav'); // Se puede usar para chequear el estado si es necesario, pero .nav-links es suficiente
 
     menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
+        navLinks.classList.toggle('active');
 
-        const isExpanded = mainNav.classList.contains('active');
+        const isExpanded = navLinks.classList.contains('active');
         menuToggle.setAttribute('aria-expanded', isExpanded);
-        menuToggle.textContent = isExpanded ? '✕' : '☰';
+        // Cambia el icono: '✕' para abierto, '☰' para cerrado
+        menuToggle.textContent = isExpanded ? '✕' : '☰'; 
     });
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                mainNav.classList.remove('active');
-                menuToggle.textContent = '☰';
-            }
+
+    // --- LÓGICA DE DROPDOWN DE GENERACIONES ---
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+
+        if (toggle && menu) {
+            toggle.addEventListener('click', (event) => {
+                event.stopPropagation();
+                // Cierra otros dropdowns abiertos
+                document.querySelectorAll('.dropdown-menu.active').forEach(openMenu => {
+                    if (openMenu !== menu) {
+                        openMenu.classList.remove('active');
+                    }
+                });
+                menu.classList.toggle('active');
+            });
+
+            // Lógica para cerrar el menú en móvil al hacer click en un enlace
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Cierra el menú desplegable móvil después de hacer click
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        menuToggle.textContent = '☰'; 
+                    }
+                });
+            });
+        }
+    });
+
+    // Cierra el menú desplegable al hacer clic fuera
+    window.addEventListener('click', () => {
+        document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
+            menu.classList.remove('active');
         });
     });
 });
-      
