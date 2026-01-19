@@ -49,36 +49,104 @@ document.addEventListener('DOMContentLoaded', () => {
     const pokemonGrid = document.getElementById('pokemon-grid');
     const regionName = document.getElementById('region-name');
     
-    function createPokemonCard(pokemon, index) {
-        const formattedId = String(pokemon.id).padStart(3, '0');
+function createPokemonCard(pokemon, index) {
+    const formattedId = String(pokemon.id).padStart(3, '0');
+    const card = document.createElement('div');
+    card.classList.add('pokemon-card', 'animated-card');
+    card.style.animationDelay = `${index * 0.03}s`;
+    
+    // Guardar referencias de formas
+    const allForms = [
+        { name: 'Base', types: pokemon.types },
+        ...(pokemon.forms || [])
+    ];
+    
+    let currentFormIndex = 0;
+    
+    function updateCardDisplay() {
+        const currentForm = allForms[currentFormIndex];
         
-        const typeTags = pokemon.types.map(type => 
+        // Actualizar tipos
+        const typeTags = currentForm.types.map(type => 
             `<span class="type-tag type-${type.toLowerCase()}">${type}</span>`
         ).join('');
-
-        const card = document.createElement('div');
-        card.classList.add('pokemon-card', 'animated-card');
-        card.style.animationDelay = `${index * 0.03}s`;
         
-        // Establecer variables CSS para los colores de los tipos
-        const primaryType = pokemon.types[0].toLowerCase();
-        const secondaryType = pokemon.types[1]?.toLowerCase() || '';
+        card.querySelector('.types').innerHTML = typeTags;
         
+        // Actualizar nombre de forma
+        const formDisplay = card.querySelector('.form-display');
+        if (formDisplay) {
+            formDisplay.textContent = currentForm.name;
+        }
+        
+        // Actualizar colores de glow
+        const primaryType = currentForm.types[0].toLowerCase();
+        const secondaryType = currentForm.types[1]?.toLowerCase() || '';
         const primaryColor = typeColorMap[primaryType] || '#A8A878';
         const secondaryColor = secondaryType ? (typeColorMap[secondaryType] || '#A8A878') : primaryColor;
         
         card.style.setProperty('--type-primary-color-glow', primaryColor);
         card.style.setProperty('--type-secondary-color-glow', secondaryColor);
-
-        card.innerHTML = `
-            <p class="number">#${formattedId}</p>
-            <div class="image" aria-label="Pokébola de ${pokemon.name}"></div>
-            <h2 class="name">${pokemon.name}</h2>
-            <div class="types">${typeTags}</div>
-        `;
         
-        return card;
+        // Actualizar imagen
+        const imageDiv = card.querySelector('.image');
+        imageDiv.style.backgroundImage = `url('https://raw.githubusercontent.com/PokeAPI/sprites/master/pokemon/other/official-artwork/${pokemon.id}.png')`;
     }
+    
+    // Establecer colores iniciales
+    const primaryType = pokemon.types[0].toLowerCase();
+    const secondaryType = pokemon.types[1]?.toLowerCase() || '';
+    const primaryColor = typeColorMap[primaryType] || '#A8A878';
+    const secondaryColor = secondaryType ? (typeColorMap[secondaryType] || '#A8A878') : primaryColor;
+    
+    card.style.setProperty('--type-primary-color-glow', primaryColor);
+    card.style.setProperty('--type-secondary-color-glow', secondaryColor);
+
+    const typeTags = pokemon.types.map(type => 
+        `<span class="type-tag type-${type.toLowerCase()}">${type}</span>`
+    ).join('');
+
+    // HTML con flechas de navegación
+    let formsHtml = '';
+    if (pokemon.forms && pokemon.forms.length > 0) {
+        formsHtml = `
+            <div class="forms-navigator">
+                <button class="form-nav-btn form-prev" aria-label="Forma anterior">‹</button>
+                <span class="form-display">Base</span>
+                <button class="form-nav-btn form-next" aria-label="Forma siguiente">›</button>
+            </div>
+        `;
+    }
+
+    card.innerHTML = `
+        <p class="number">#${formattedId}</p>
+        <div class="image" aria-label="Pokébola de ${pokemon.name}"></div>
+        <h2 class="name">${pokemon.name}</h2>
+        <div class="types">${typeTags}</div>
+        ${formsHtml}
+    `;
+
+    // Actualizar imagen inicial
+    updateCardDisplay();
+
+    // Event listeners para las flechas
+    if (pokemon.forms && pokemon.forms.length > 0) {
+        const prevBtn = card.querySelector('.form-prev');
+        const nextBtn = card.querySelector('.form-next');
+        
+        prevBtn.addEventListener('click', () => {
+            currentFormIndex = (currentFormIndex - 1 + allForms.length) % allForms.length;
+            updateCardDisplay();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentFormIndex = (currentFormIndex + 1) % allForms.length;
+            updateCardDisplay();
+        });
+    }
+    
+    return card;
+}
 
     function renderPokedex(generation) {
         // Filtrar Pokémon por generación

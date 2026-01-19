@@ -217,7 +217,46 @@ body.dark-mode {
     z-index: 10;
     border: 0.3rem solid white;
 }
+.forms-navigator {
+    margin-top: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
 
+.form-nav-btn {
+    background: transparent;
+    color: var(--clr-primary);
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.form-nav-btn:hover {
+    transform: scale(1.1);
+    color: var(--clr-primary);
+}
+
+.form-nav-btn:active {
+    transform: scale(0.95);
+}
+
+.form-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--clr-text);
+    min-width: 12rem;
+    text-align: center;
+}
 @keyframes fadeInMove {
     from {
         opacity: 0;
