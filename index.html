@@ -1,49 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex Kanto | DevChallenge</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="light-mode">
     <header class="header">
-        <div class="logo">Pokédex Kanto</div>
-        
+        <div class="logo">Pokédex <span id="region-name">Kanto</span></div>
+
         <nav id="main-nav">
             <div class="nav-links">
                 <div class="dropdown dropdown-mobile">
                     <button class="dropdown-toggle">Generaciones &#9662;</button>
                     <div class="dropdown-menu">
-                    <a href="index.html" class="nav-active">Gen 1 (Kanto)</a>
-                    <a href="G2/Gen2.html">Gen 2 (Johto)</a>
-                    <a href="G3/Gen3.html">Gen 3 (Hoenn)</a>
-                    <a href="G4/Gen4.html">Gen 4 (Sinnoh)</a>
-                    <a href="G5/Gen5.html">Gen 5 (Unova)</a>
-                    <a href="G6/Gen6.html">Gen 6 (Kalos)</a>
-                    <a href="G7/Gen7.html">Gen 7 (Alola)</a>
-                    <a href="G8/Gen8.html">Gen 8 (Galar)</a>
-                    <a href="G9/Gen9.html">Gen 9 (Paldea)</a>
+                        <a href="#" data-generation="1" class="gen-link nav-active">Gen 1(Kanto)</a>
+                        <a href="#" data-generation="2" class="gen-link">Gen 2(Johto)</a>
+                        <a href="#" data-generation="3" class="gen-link">Gen 3(Hoenn)</a>
+                        <a href="#" data-generation="4" class="gen-link">Gen 4(Sinnoh)</a>
+                        <a href="#" data-generation="5" class="gen-link">Gen 5(Unova)</a>
+                        <a href="#" data-generation="6" class="gen-link">Gen 6(Kalos)</a>
+                        <a href="#" data-generation="7" class="gen-link">Gen 7(Alola)</a>
+                        <a href="#" data-generation="8" class="gen-link">Gen 8(Galar)</a>
+                        <a href="#" data-generation="9" class="gen-link">Gen 9(Paldea)</a>
+                    </div>
                 </div>
-                </div>
+                
+                <div class="dropdown dropdown-mobile">
+                    <button class="dropdown-toggle">Tools &#9662;</button>
+                    <div class="dropdown-menu">
+                        <a href="rc.html"  class="tool-link nav-active">Ratio de Captura</a>
+                    </div>
             </div>
         </nav>
-        
+
+      
+
+
         <div class="header-actions">
+                <div class="dropdown dropdown-desktop">
+                    <button class="dropdown-toggle">Tools &#9662;</button>
+                    <div class="dropdown-menu">
+                        <a href="rc.html"  class="tool-link nav-active">Ratio de Captura</a>
+                    </div>
+            </div>
+
             <div class="dropdown dropdown-desktop">
                 <button class="dropdown-toggle">Generaciones &#9662;</button>
                 <div class="dropdown-menu">
-                    <a href="index.html" class="nav-active">Gen 1 (Kanto)</a>
-                    <a href="G2/Gen2.html">Gen 2 (Johto)</a>
-                    <a href="G3/Gen3.html">Gen 3 (Hoenn)</a>
-                    <a href="G4/Gen4.html">Gen 4 (Sinnoh)</a>
-                    <a href="G5/Gen5.html">Gen 5 (Unova)</a>
-                    <a href="G6/Gen6.html">Gen 6 (Kalos)</a>
-                    <a href="G7/Gen7.html">Gen 7 (Alola)</a>
-                    <a href="G8/Gen8.html">Gen 8 (Galar)</a>
-                    <a href="G9/Gen9.html">Gen 9 (Paldea)</a>
+                    <a href="#" data-generation="1" class="gen-link nav-active">Gen 1(Kanto)</a>
+                    <a href="#" data-generation="2" class="gen-link">Gen 2(Johto)</a>
+                    <a href="#" data-generation="3" class="gen-link">Gen 3(Hoenn)</a>
+                    <a href="#" data-generation="4" class="gen-link">Gen 4(Sinnoh)</a>
+                    <a href="#" data-generation="5" class="gen-link">Gen 5(Unova)</a>
+                    <a href="#" data-generation="6" class="gen-link">Gen 6(Kalos)</a>
+                    <a href="#" data-generation="7" class="gen-link">Gen 7(Alola)</a>
+                    <a href="#" data-generation="8" class="gen-link">Gen 8(Galar)</a>
+                    <a href="#" data-generation="9" class="gen-link">Gen 9(Paldea)</a>
                 </div>
             </div>
+
             <button id="theme-toggle" class="toggle-button" aria-label="Cambiar modo claro/oscuro">
                 ☀️ / 🌙
             </button>
@@ -52,12 +69,12 @@
             </button>
         </div>
     </header>
-
     <main class="pokedex-main">
-        <h1 class="visually-hidden">Pokédex de Primera Generación</h1>
+        <h1 class="visually-hidden">Pokédex</h1>
         <section class="pokemon-grid" id="pokemon-grid"></section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
+    
 </body>
 </html>

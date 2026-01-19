@@ -7,18 +7,35 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none; /* Añadido para limpiar enlaces */
+    text-decoration: none; 
 }
 
-
 body {
-    /* Variables de modo claro */
     --clr-bg: #f5f5f5; 
     --clr-text: #222;
     --clr-primary: #CC0000;
     --clr-secondary: #333;
     --clr-card-bg: #fff;
     --clr-shadow: rgba(0, 0, 0, 0.1);
+
+    --type-color-normal: #A8A878;
+    --type-color-fire: #F08030;
+    --type-color-water: #6890F0;
+    --type-color-electric: #F8D030;
+    --type-color-grass: #78C850;
+    --type-color-ice: #98D8D8;
+    --type-color-fighting: #C03028;
+    --type-color-poison: #A040A0;
+    --type-color-ground: #E0C068;
+    --type-color-flying: #A890F0;
+    --type-color-psychic: #F85888;
+    --type-color-bug: #A8B820;
+    --type-color-rock: #B8A038;
+    --type-color-ghost: #705898;
+    --type-color-dark: #705848;
+    --type-color-dragon: #7038F8;
+    --type-color-steel: #B8B8D0;
+    --type-color-fairy: #EE99AC;
 
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.5;
@@ -27,9 +44,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-
 body.dark-mode {
-    /* Variables de modo oscuro */
     --clr-bg: #1e1e1e;
     --clr-text: #f0f0f0;
     --clr-primary: #ff5555;
@@ -37,7 +52,6 @@ body.dark-mode {
     --clr-card-bg: #2a2a2a;
     --clr-shadow: rgba(255, 255, 255, 0.15);
 }
-
 
 /* Variables de color por tipo */
 .type-normal { --type-color: #A8A878; }
@@ -54,12 +68,11 @@ body.dark-mode {
 .type-bug { --type-color: #A8B820; }
 .type-rock { --type-color: #B8A038; }
 .type-ghost { --type-color: #705898; }
+.type-dark { --type-color: #705848; } 
 .type-dragon { --type-color: #7038F8; }
 .type-steel { --type-color: #B8B8D0; }
 .type-fairy { --type-color: #EE99AC; }
 
-
-/* --- HEADER Y NAVEGACIÓN --- */
 .header {
     display: flex;
     justify-content: space-between;
@@ -79,18 +92,15 @@ body.dark-mode {
     text-shadow: 1px 1px 2px var(--clr-shadow);
 }
 
-/* Ocultar la navegación por defecto, solo visible en escritorio */
 #main-nav {
-    display: flex; /* Asegura que la nav ocupe el espacio para la alineación */
-    flex-grow: 1; /* Permite que la nav ocupe el espacio central */
-    justify-content: flex-end; /* Alinea los elementos a la derecha en escritorio si los hubiera */
+    display: flex; 
+    flex-grow: 1; 
+    justify-content: flex-end; 
 }
 
-/* Ocultar nav-links en escritorio, ya que el dropdown-desktop maneja la funcionalidad */
 .nav-links {
     display: none; 
 }
-
 
 .header-actions {
     display: flex;
@@ -108,16 +118,15 @@ body.dark-mode {
     color: var(--clr-text);
     transition: all 0.2s;
 }
+
 .toggle-button:hover, .menu-toggle:hover {
     background-color: var(--clr-secondary);
     color: var(--clr-bg);
 }
 
-.menu-toggle { display: none; } /* Oculto en escritorio */
+.menu-toggle { display: none; } 
 .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
-
-/* --- ESTILOS DE POKEDEX Y GRID --- */
 .pokedex-main {
     padding: 4rem 2rem;
     max-width: 140rem;
@@ -131,7 +140,6 @@ body.dark-mode {
     justify-items: center;
 }
 
-/* --- ESTILOS DE CARTA POKEMON --- */
 .pokemon-card {
     background-color: var(--clr-card-bg);
     border-radius: 1.5rem;
@@ -141,15 +149,16 @@ body.dark-mode {
     min-width: 15rem;
     cursor: pointer;
     
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     box-shadow: 0 4px 8px var(--clr-shadow);
 }
 
 .pokemon-card:hover, .pokemon-card:active {
     transform: translateY(-0.5rem) scale(1.03);
-    
-    box-shadow: 0 10px 20px var(--clr-shadow), 
-                0 0 15px 3px var(--clr-primary); 
+    box-shadow: 0 5px 5px var(--clr-shadow), 
+                0 0 10px 8px rgba(0, 0, 0, 0.2),
+                -10px 0 10px 0px var(--type-primary-color-glow),
+                10px 0 10px 0px var(--type-secondary-color-glow);
 }
 
 .pokemon-card .number {
@@ -184,12 +193,11 @@ body.dark-mode {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Diseño de la Pokébola de placeholder */
 .pokemon-card .image {
     width: 8rem;
     height: 8rem;
     margin: 0 auto;
-    background: conic-gradient(red 0 50%, white 50% 100%);
+    background: conic-gradient(red 0 50%, rgb(255, 255, 255) 50% 100%);
     border: 0.5rem solid var(--clr-text);
     border-radius: 50%;
     position: relative;
@@ -198,6 +206,7 @@ body.dark-mode {
     align-items: center;
     justify-content: center;
 }
+
 .pokemon-card .image::after {
     content: '';
     position: absolute;
@@ -209,7 +218,6 @@ body.dark-mode {
     border: 0.3rem solid white;
 }
 
-/* Animación de entrada de tarjetas */
 @keyframes fadeInMove {
     from {
         opacity: 0;
@@ -226,7 +234,6 @@ body.dark-mode {
     animation: fadeInMove 0.5s ease-out forwards;
 }
 
-/* --- ESTILOS DE DROPDOWN (ESCRITORIO) --- */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -242,14 +249,16 @@ body.dark-mode {
     padding: 0.8rem 1.2rem;
     transition: all 0.2s;
 }
+
 .dropdown-toggle:hover {
     background-color: var(--clr-secondary);
     color: var(--clr-bg);
 }
+
 .dropdown-menu {
     display: none;
     position: absolute;
-    right: 0; /* Alinea a la derecha para escritorio */
+    right: 0; 
     background-color: var(--clr-card-bg);
     box-shadow: 0 8px 16px var(--clr-shadow);
     z-index: 1;
@@ -282,26 +291,24 @@ body.dark-mode {
     color: white;
 }
 
-/* Estilos para la barra de desplazamiento */
 .dropdown-menu::-webkit-scrollbar {
     width: 8px;
 }
+
 .dropdown-menu::-webkit-scrollbar-track {
     background: var(--clr-bg);
     border-radius: 0 8px 8px 0;
 }
+
 .dropdown-menu::-webkit-scrollbar-thumb {
     background: var(--clr-secondary);
     border-radius: 4px;
 }
 
-/* Ocultar el dropdown de móvil en escritorio */
 .dropdown-mobile {
     display: none;
 }
 
-
-/* --- MEDIA QUERY: VISTA MÓVIL (768px) --- */
 @media (max-width: 768px) {
     .header {
         padding: 1.5rem 2rem;
@@ -311,28 +318,24 @@ body.dark-mode {
         font-size: 2.4rem;
     }
 
-    /* Mostrar el botón de menú de hamburguesa */
     .menu-toggle {
         display: block;
     }
 
-    /* Ocultar el dropdown de escritorio en móvil */
     .dropdown-desktop {
         display: none;
     }
 
-    /* Configuración de la navegación móvil */
     #main-nav {
-        /* Reset de estilos */
         flex-grow: 0; 
         justify-content: flex-start;
     }
     
     .nav-links {
-        display: none; /* OCULTA la navegación por defecto */
+        display: none; 
         flex-direction: column;
         position: absolute;
-        top: 6.5rem; /* Ajuste para debajo del header */
+        top: 6.5rem; 
         left: 0;
         width: 100%;
         background-color: var(--clr-card-bg);
@@ -342,12 +345,11 @@ body.dark-mode {
     }
 
     .nav-links.active {
-        display: flex; /* MUESTRA la navegación cuando está activa (al pulsar hamburguesa) */
+        display: flex; 
     }
 
-    /* Mostrar y estilizar el dropdown de móvil dentro del menú desplegable */
     .dropdown-mobile {
-        display: block; /* Ahora se muestra dentro del menú desplegable */
+        display: block; 
         width: 100%;
     }
     
@@ -358,23 +360,22 @@ body.dark-mode {
         border-bottom: 1px solid var(--clr-bg);
         border-radius: 0;
         padding: 1.5rem 2rem;
-        background: var(--clr-card-bg); /* Asegura el fondo */
+        background: var(--clr-card-bg); 
         color: var(--clr-text);
     }
     
     .dropdown-mobile .dropdown-menu {
-        position: static; /* El menú fluye con el contenido */
+        position: static; 
         box-shadow: none;
         border-radius: 0;
         border: none;
-        max-height: none; /* Permitir que se expanda completamente */
+        max-height: none; 
         width: 100%;
     }
     
     .dropdown-mobile .dropdown-menu a {
-        padding-left: 4rem; /* Sangría para diferenciar de la cabecera del dropdown */
+        padding-left: 4rem; 
     }
-
 
     .pokemon-grid {
         grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
