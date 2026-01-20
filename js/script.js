@@ -17,7 +17,8 @@ const typeColorMap = {
     'dark': '#705848',
     'dragon': '#7038F8',
     'steel': '#B8B8D0',
-    'fairy': '#EE99AC'
+    'fairy': '#EE99AC',
+    'unknown': '#ebe3e1'
 };
 
 // Mapa de regiones por generación
@@ -56,10 +57,21 @@ function createPokemonCard(pokemon, index, generation) {
     card.style.animationDelay = `${index * 0.03}s`;
     
     // Guardar referencias de formas
-    const allForms = [
+    let allForms;
+    if (pokemon.name.toLowerCase()=== 'arceus') {
+        allForms = [
+            {name:'Base', types: pokemon.types },
+            ...Object.keys(typeColorMap).map(type => ({
+                name:type.charAt(0).toUpperCase() + type.slice(1),
+                types: [type]
+            }))
+        ];
+    }else {
+    
+    allForms = [
         { name: 'Base', types: pokemon.types },
         ...(pokemon.forms || [])
-    ];
+    ];}
     
     let currentFormIndex = 0;
     
@@ -90,7 +102,15 @@ function updateCardDisplay() {
     
     // Actualizar imagen usando ::before
     const imageDiv = card.querySelector('.image');
-    imageDiv.style.backgroundImage = `url('https://play.pokemonshowdown.com/sprites/gen${generation}/${pokemon.name.toLowerCase()}.png')`;
+    let imageName = pokemon.name.toLowerCase();
+    
+    // Si es una forma (no es "Base"), agregar el nombre de la forma a la URL
+    if (currentForm.name !== 'Base' && currentForm.name) {
+        const formSuffix = currentForm.name.toLowerCase().replace(/\s+/g, '-');
+        imageName = `${pokemon.name.toLowerCase()}-${formSuffix}`;
+    }
+    
+    imageDiv.style.backgroundImage = `url('https://play.pokemonshowdown.com/sprites/gen${generation}/${imageName}.png')`;
 }
     
     // Establecer colores iniciales

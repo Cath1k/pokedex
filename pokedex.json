@@ -1037,6 +1037,7 @@
       "name": "Cleffa",
       "types": ["Fairy"],
       "generation": 2
+
     },
     {
       "id": 174,
@@ -1204,7 +1205,33 @@
       "id": 201,
       "name": "Unown",
       "types": ["Psychic"],
-      "generation": 2
+      "generation": 2,
+      "forms":[
+        {"name":"b","types": ["Psychic"]},
+        {"name":"c","types": ["Psychic"]},
+        {"name":"d","types": ["Psychic"]},
+        {"name":"e","types": ["Psychic"]},
+        {"name":"f","types": ["Psychic"]},
+        {"name":"g","types": ["Psychic"]},
+        {"name":"h","types": ["Psychic"]},
+        {"name":"i","types": ["Psychic"]},
+        {"name":"j","types": ["Psychic"]},
+        {"name":"k","types": ["Psychic"]},
+        {"name":"l","types": ["Psychic"]},
+        {"name":"m","types": ["Psychic"]},
+        {"name":"n","types": ["Psychic"]},
+        {"name":"o","types": ["Psychic"]},
+        {"name":"p","types": ["Psychic"]},
+        {"name":"q","types": ["Psychic"]},
+        {"name":"r","types": ["Psychic"]},
+        {"name":"s","types": ["Psychic"]},
+        {"name":"t","types": ["Psychic"]},
+        {"name":"v","types": ["Psychic"]},
+        {"name":"w","types": ["Psychic"]},
+        {"name":"x","types": ["Psychic"]},
+        {"name":"y","types": ["Psychic"]},
+        {"name":"z","types": ["Psychic"]}
+      ]
     },
     {
       "id": 202,
@@ -2478,8 +2505,8 @@
       "types": ["Bug", "Grass"],
       "generation": 4,
       "forms": [
-        {"name": "Sandy Cloak", "types":["Bug", "Ground"]},
-        {"name": "Trash Cloak", "types":["Bug", "Steel"]}
+        {"name": "Sandy", "types":["Bug", "Ground"]},
+        {"name": "Trash", "types":["Bug", "Steel"]}
       ]
     },
       {
@@ -2872,11 +2899,11 @@
       "types": ["Electric", "Ghost"],
       "generation": 4,
       "forms": [
-        {"name": "Fan Rotom", "types": ["Electric", "Flying"]},
-        {"name": "Frost Rotom", "types": ["Electric", "Ice"]},
-        {"name": "Heat Rotom", "types": ["Electric", "Fire"]},
-        {"name": "Mow Rotom", "types": ["Electric", "Grass"]},
-        {"name": "Wash Rotom", "types": ["Electric", "Water"]}
+        {"name": "Fan", "types": ["Electric", "Flying"]},
+        {"name": "Frost", "types": ["Electric", "Ice"]},
+        {"name": "Heat", "types": ["Electric", "Fire"]},
+        {"name": "Mow", "types": ["Electric", "Grass"]},
+        {"name": "Wash", "types": ["Electric", "Water"]}
       ]
     },
 {
@@ -2960,7 +2987,8 @@
     "id": 493,
     "name": "Arceus",
     "types": ["Normal"],
-    "generation":4
+    "generation":4,
+    "forms":[{}]
 },
 {
       "id": 494,
@@ -3107,7 +3135,7 @@
     },
         {
       "id":518,
-      "name": "Musharma",
+      "name": "Musharna",
       "types": ["Psychic"],
       "generation":5
     },
@@ -3129,9 +3157,7 @@
       "types": ["Normal", "Flying"],
       "generation":5,
       "forms": [
-        {"name": "Unfezant♀️"},
-         {"name": "Unfezant♂️"}
-      ]
+        {"name": "f", "types": ["Normal", "Flying"]}]
     },
     {
       "id": 522,
@@ -3225,7 +3251,7 @@
   },
     {
     "id":537,
-    "name": "Seismistoad",
+    "name": "Seismitoad",
     "types": ["Water", "Ground"],
     "generation":5
   },
@@ -3307,9 +3333,8 @@
     "types": ["Water"],
     "generation":5,
     "forms":[
-      {"name":"Red-striped"},
-      {"name": "Blue-Striped"},
-      {"name": "White-Striped"}
+      {"name": "BlueStriped","types":["Water"]},
+      {"name": "WhiteStriped","types":["Water"]}
     ]
   },
       {
@@ -3336,7 +3361,7 @@
     "types": ["Fire"],
     "generation":5,
     "forms":[
-      {"name":"Galarian Form", "types":["Ice"]}
+      {"name":"Galar", "types":["Ice"]}
     ]
   },
    {
@@ -3345,9 +3370,9 @@
     "types": ["Fire"],
     "generation":5,
     "forms":[
-      {"name":"Zen-mode", "types":["Fire", "Psychic"]},
-      {"name":"Galarian Form", "types":["Ice"]},
-      {"name":"Galarian Form Zen-mode", "types":["Ice"]}
+      {"name":"Zen", "types":["Fire", "Psychic"]},
+      {"name":"Galar", "types":["Ice"]},
+      {"name":"GalarZen", "types":["Ice"]}
     ]
   },
   {
@@ -3583,14 +3608,14 @@
     "name": "Frillish",
     "types": ["Water", "Ghost"],
     "generation": 5,
-    "forms":[{"name": "Male"},{"name": "Female"}]
+    "forms":[{"name": "F", "types": ["Water", "Ghost"]}]
   },
     {
     "id": 593,
-    "name": "Jeliicent",
+    "name": "Jellicent",
     "types": ["Grass", "Poison"],
       "generation": 5,
-    "forms":[{"name": "Male"},{"name": "Female"}]
+    "forms":[{"name": "F", "types": ["Water", "Ghost"]}]
   },
     {
     "id": 594,
