@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pokemonGrid = document.getElementById('pokemon-grid');
     const regionName = document.getElementById('region-name');
     
-function createPokemonCard(pokemon, index) {
+function createPokemonCard(pokemon, index, generation) {
     const formattedId = String(pokemon.id).padStart(3, '0');
     const card = document.createElement('div');
     card.classList.add('pokemon-card', 'animated-card');
@@ -63,35 +63,35 @@ function createPokemonCard(pokemon, index) {
     
     let currentFormIndex = 0;
     
-    function updateCardDisplay() {
-        const currentForm = allForms[currentFormIndex];
-        
-        // Actualizar tipos
-        const typeTags = currentForm.types.map(type => 
-            `<span class="type-tag type-${type.toLowerCase()}">${type}</span>`
-        ).join('');
-        
-        card.querySelector('.types').innerHTML = typeTags;
-        
-        // Actualizar nombre de forma
-        const formDisplay = card.querySelector('.form-display');
-        if (formDisplay) {
-            formDisplay.textContent = currentForm.name;
-        }
-        
-        // Actualizar colores de glow
-        const primaryType = currentForm.types[0].toLowerCase();
-        const secondaryType = currentForm.types[1]?.toLowerCase() || '';
-        const primaryColor = typeColorMap[primaryType] || '#A8A878';
-        const secondaryColor = secondaryType ? (typeColorMap[secondaryType] || '#A8A878') : primaryColor;
-        
-        card.style.setProperty('--type-primary-color-glow', primaryColor);
-        card.style.setProperty('--type-secondary-color-glow', secondaryColor);
-        
-        // Actualizar imagen
-        const imageDiv = card.querySelector('.image');
-        imageDiv.style.backgroundImage = `url('https://raw.githubusercontent.com/PokeAPI/sprites/master/pokemon/other/official-artwork/${pokemon.id}.png')`;
+function updateCardDisplay() {
+    const currentForm = allForms[currentFormIndex];
+    
+    // Actualizar tipos
+    const typeTags = currentForm.types.map(type => 
+        `<span class="type-tag type-${type.toLowerCase()}">${type}</span>`
+    ).join('');
+    
+    card.querySelector('.types').innerHTML = typeTags;
+    
+    // Actualizar nombre de forma
+    const formDisplay = card.querySelector('.form-display');
+    if (formDisplay) {
+        formDisplay.textContent = currentForm.name;
     }
+    
+    // Actualizar colores de glow
+    const primaryType = currentForm.types[0].toLowerCase();
+    const secondaryType = currentForm.types[1]?.toLowerCase() || '';
+    const primaryColor = typeColorMap[primaryType] || '#A8A878';
+    const secondaryColor = secondaryType ? (typeColorMap[secondaryType] || '#A8A878') : primaryColor;
+    
+    card.style.setProperty('--type-primary-color-glow', primaryColor);
+    card.style.setProperty('--type-secondary-color-glow', secondaryColor);
+    
+    // Actualizar imagen usando ::before
+    const imageDiv = card.querySelector('.image');
+    imageDiv.style.backgroundImage = `url('https://play.pokemonshowdown.com/sprites/gen${generation}/${pokemon.name.toLowerCase()}.png')`;
+}
     
     // Establecer colores iniciales
     const primaryType = pokemon.types[0].toLowerCase();
@@ -150,7 +150,10 @@ function createPokemonCard(pokemon, index) {
 
     function renderPokedex(generation) {
         // Filtrar Pokémon por generación
-        const filteredPokemon = pokedexData.filter(pokemon => pokemon.generation === generation);
+        let filteredPokemon;
+        
+            filteredPokemon = pokedexData.filter(pokemon => pokemon.generation === generation);
+    
         
         // Limpiar grid y actualizar nombre de región
         pokemonGrid.innerHTML = '';
@@ -158,7 +161,7 @@ function createPokemonCard(pokemon, index) {
         
         // Renderizar tarjetas
         filteredPokemon.forEach((pokemon, index) => {
-            const card = createPokemonCard(pokemon, index);
+            const card = createPokemonCard(pokemon, index, generation);
             pokemonGrid.appendChild(card);
         });
 

@@ -197,9 +197,9 @@ body.dark-mode {
     width: 8rem;
     height: 8rem;
     margin: 0 auto;
-    background: conic-gradient(red 0 50%, rgb(255, 255, 255) 50% 100%);
-    border: 0.5rem solid var(--clr-text);
-    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -207,16 +207,19 @@ body.dark-mode {
     justify-content: center;
 }
 
-.pokemon-card .image::after {
+.pokemon-card .image::before {
     content: '';
     position: absolute;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: var(--clr-text);
-    border-radius: 50%;
-    z-index: 10;
-    border: 0.3rem solid white;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/pokemon/other/official-artwork/1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 5;
 }
+
+
 .forms-navigator {
     margin-top: 1.2rem;
     display: flex;
